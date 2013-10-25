@@ -38,8 +38,8 @@ Bons estudos!
 * Welcome to M101JS ✎ 
 * What is MongoDB ✔ - [Eric Oliveira](https://github.com/eoop)
 	* What is MongoDB - quiz ✔ [Eric Oliveira](https://github.com/eoop)
-* Mongo Relative to Relational ✎  [Eric Oliveira](https://github.com/eoop)
-	* Mongo Relative to Relational - quiz ✎  [Eric Oliveira](https://github.com/eoop)
+* Mongo Relative to Relational ✔  [Eric Oliveira](https://github.com/eoop)
+	* Mongo Relative to Relational - quiz ✔  [Eric Oliveira](https://github.com/eoop)
 * Overview of Building an App with Mongo ✕
 * System Requirements ✕
 * Installing MongoDB (mac) ✕
