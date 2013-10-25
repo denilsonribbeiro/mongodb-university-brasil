@@ -1,0 +1,60 @@
+1
+00:0:00,000 --> 00:0:03,000
+E a resposta é que o MongoDB deliberadamente omite os joins,
+
+2
+00:0:03,000 --> 00:0:05,000
+Porque joins não são particularmente
+
+3
+00:0:05,000 --> 00:0:07,000
+horizontalmente escaláveis
+
+4
+00:0:07,000 --> 00:0:11,000
+Indexes são suportados com MongoDB, e eles são suportados
+
+5
+00:0:11,000 --> 00:0:13,000
+porque são muito necessários para um bom desempenho e 
+
+6
+00:0:13,000 --> 00:0:15,000
+não impedem a escabilidade horizontal.
+
+7
+00:0:15,000 --> 00:0:20,000
+Indexes secundários são oferecidos, tão extritamente pelo teor
+
+8
+00:0:20,000 --> 00:0:22,000
+da questão, eles não são omitidos
+
+9
+00:0:22,000 --> 00:0:25,000
+Mas para ser honesto, eles são desafiadores para se saírem bem
+
+10
+00:0:25,000 --> 00:0:28,000
+entre sistemas que são horizontalmente escaláveis.
+
+11
+00:0:28,000 --> 00:0:30,000
+E por último transações entre múltiplas
+
+12
+00:0:30,000 --> 00:0:31,000
+coleções
+
+13
+00:0:31,000 --> 00:0:35,000
+A qual é especificamente omitida pelo MongoDB por ser
+
+14
+00:0:35,000 --> 00:0:38,000
+muito difícil de dar suporte para transações entre múltiplas
+
+15
+00:0:38,000 --> 00:0:41,000
+coleções entre sistemas que são horizontalmente escaláveis
+
