@@ -1,0 +1,376 @@
+1
+00:0:00,000 --> 00:0:01,000
+Tudo bem, agora vamos falar sobre uma
+
+2
+00:0:01,000 --> 00:0:03,000
+aplicação à 20.000 pés
+
+3
+00:0:03,000 --> 00:0:07,000
+Então esta será uma visão por alto de todas 
+
+4
+00:0:07,000 --> 00:0:10,000
+as partes de uma aplicação que usa MongoDB, e como
+
+5
+00:0:10,000 --> 00:0:14,000
+elas interagem, e uma curto explanação sobre o Mongo Shell,
+
+6
+00:0:14,000 --> 00:0:17,000
+e como ele entra em tudo isso.
+
+7
+00:0:17,000 --> 00:0:21,000
+Tudo bem, no início, você tem alguma
+
+8
+00:0:21,000 --> 00:0:22,000
+aplicação
+
+9
+00:0:22,000 --> 00:0:26,000
+Esta é sua aplicação, e ela fornece algum serviço
+
+10
+00:0:26,000 --> 00:0:29,000
+Aqui você tem alguns clientes, e estes clientes estão 
+
+11
+00:0:29,000 --> 00:0:31,000
+fazendo uma requisição na sua aplicação
+
+12
+00:0:31,000 --> 00:0:35,000
+Eles podem ser navegadores, ou eles podem ser várias outras
+
+13
+00:0:35,000 --> 00:0:36,000
+aplicações.
+
+14
+00:0:36,000 --> 00:0:37,000
+Eles não necessariamente precisam ser de navegadores
+
+15
+00:0:37,000 --> 00:0:41,000
+Pois podem ser qualquer coisa que precisa de algum serviço
+
+16
+00:0:41,000 --> 00:0:41,000
+da sua aplicação.
+
+17
+00:0:41,000 --> 00:0:44,000
+Eles podem consumir uma API REST.
+
+18
+00:0:44,000 --> 00:0:46,000
+Basicamente, você vai ter clientes, e
+
+19
+00:0:46,000 --> 00:0:47,000
+você vai ter seu servidor
+
+20
+00:0:47,000 --> 00:0:50,000
+Então, este é o tipo de modelo que estamos lidando aqui. 
+
+21
+00:0:50,000 --> 00:0:54,000
+Este servidor estará rodando Node.js nest curso
+
+22
+00:0:54,000 --> 00:0:58,000
+e basicamente em uma alto nível, pois Node.js é
+
+23
+00:0:58,000 --> 00:1:03,000
+basicamente um programa C++ que você controla usando
+
+24
+00:1:03,000 --> 00:1:04,000
+V8 JavaScript
+
+25
+00:1:04,000 --> 00:1:07,000
+Então qualquer aplicação que você escrever usando Node.js vai ser escrita
+
+26
+00:1:07,000 --> 00:1:11,000
+em JavaScript, e isto vai controlar esta aplicação C++,
+
+27
+00:1:11,000 --> 00:1:13,000
+e você irá ser capaz de dizer algo como, eles fazem uma 
+
+28
+00:1:13,000 --> 00:1:17,000
+requisição para este recurso, e sua aplicação em
+
+29
+00:1:17,000 --> 00:1:20,000
+JavaScript vai dizer, OK, se eles fizerem uma requisição para este
+
+30
+00:1:20,000 --> 00:1:22,000
+recurso, eu sei como responder a ele, e eu vou
+
+31
+00:1:22,000 --> 00:1:24,000
+responder adequadamente.
+
+32
+00:1:24,000 --> 00:1:27,000
+Essa é a parte básica da aplicação.
+
+33
+00:1:27,000 --> 00:1:30,000
+Mas se sua aplicação precisa guardar dados persistentes agora,
+
+34
+00:1:30,000 --> 00:1:33,000
+aqui é onde o MongoDB chega.
+
+35
+00:1:33,000 --> 00:1:35,000
+Aqui, a maneira como isto vai funcionar é que sua aplicação 
+
+36
+00:1:35,000 --> 00:1:38,000
+vai realmente fazer uma requisição ao MongoDB.
+
+37
+00:1:38,000 --> 00:1:40,000
+Ou isto vai tentar armazenar dados, ou isto vai tentar
+
+38
+00:1:40,000 --> 00:1:44,000
+recuperar dados, atualizar dados, e vai fazer uma requisição ao
+
+39
+00:1:44,000 --> 00:1:48,000
+MongoDB para executar esta operação, e MongoDB vai
+
+40
+00:1:48,000 --> 00:1:53,000
+responder com o status de retorno, ou se você realmente especificar
+
+41
+00:1:53,000 --> 00:1:55,000
+o interesse por escrito, que vamos falar sobre depois, isso vai
+
+42
+00:1:55,000 --> 00:1:59,000
+responder quando a persistência apropriada for alcançada.
+
+43
+00:1:59,000 --> 00:2:02,000
+Onde você pode dizer que escrever o interesse de toda minha réplica 
+
+44
+00:2:02,000 --> 00:2:05,000
+determinada, e isto vai somente responder quando toda sua réplica 
+
+45
+00:2:05,000 --> 00:2:07,000
+for escrita para.
+
+46
+00:2:07,000 --> 00:2:09,000
+O núcleo do servidor do MongoDB, se você está curioso, é
+
+47
+00:2:09,000 --> 00:2:12,000
+escrito em C++ também.
+
+48
+00:2:12,000 --> 00:2:15,000
+Assim é como os componentes trabalham juntos.
+
+49
+00:2:15,000 --> 00:2:18,000
+Nós basicamente temos esta aplicação interagindo do servidor
+
+50
+00:2:18,000 --> 00:2:21,000
+diretamente com os clientes, e quando o servidor da aplicação
+
+51
+00:2:21,000 --> 00:2:25,000
+precisa de armazenar dados persistentemente, ela realmente atua
+
+52
+00:2:25,000 --> 00:2:28,000
+como uma comunicação cliente com o MongoDB, que está
+
+53
+00:2:28,000 --> 00:2:31,000
+escutando por requisições de entrada, e vai efetivamente
+
+54
+00:2:31,000 --> 00:2:34,000
+responder quando a requisição estiver completa.
+
+55
+00:2:34,000 --> 00:2:37,000
+Então, a outra parte disso é que nós realmente temos um
+
+56
+00:2:37,000 --> 00:2:38,000
+shell administrativo.
+
+57
+00:2:38,000 --> 00:2:42,000
+Esse é o Mongo Shell, e ele é uma ferramente útil para
+
+58
+00:2:42,000 --> 00:2:44,000
+realização de várias tarefas administrativas.
+
+59
+00:2:44,000 --> 00:2:46,000
+Se você somente quiser ter uma rápida visão sobre o que está no seu
+
+60
+00:2:46,000 --> 00:2:49,000
+banco de dados, ele é uma ferramente muito útil.
+
+61
+00:2:49,000 --> 00:2:51,000
+Então, o que é o Mongo Shell exatamente?
+
+62
+00:2:51,000 --> 00:2:54,000
+Mongo Shell tem muitas similaridades com
+
+63
+00:2:54,000 --> 00:2:59,000
+o Node.js, por serem ambos um programa em C++ que
+
+64
+00:2:59,000 --> 00:3:02,000
+você controla usando V8.
+
+65
+00:3:02,000 --> 00:3:04,000
+Quando você abre  o Mongo Shell você tem um
+
+66
+00:3:04,000 --> 00:3:06,000
+prompt, e você pode escrever vários comandos dentro deste
+
+67
+00:3:06,000 --> 00:3:09,000
+prompt, e o Mongo Shell vai então interpretar estes
+
+68
+00:3:09,000 --> 00:3:14,000
+comandos usando sua própria ligação V8, e fazer requisições para
+
+69
+00:3:14,000 --> 00:3:15,000
+o MongoDB, e o MongoDB vai respondê-lo.
+
+70
+00:3:15,000 --> 00:3:18,000
+E você pode ver a resposta imediata no shell.
+
+71
+00:3:18,000 --> 00:3:22,000
+Isto é útil para fazer coisas como perguntar várias
+
+72
+00:3:22,000 --> 00:3:26,000
+questões sobre sua configuração, ou mesmo ver
+
+73
+00:3:26,000 --> 00:3:29,000
+um pouco do que você realmente armazenou em seu banco de dados,
+
+74
+00:3:29,000 --> 00:3:31,000
+ou 'debuggar' sua aplicação.
+
+75
+00:3:31,000 --> 00:3:33,000
+Você pode somente pensar nesta parte da aplicação
+
+76
+00:3:33,000 --> 00:3:36,000
+como a interface administrativa.
+
+77
+00:3:36,000 --> 00:3:38,000
+e esta parte é a atual interface
+
+78
+00:3:38,000 --> 00:3:39,000
+de produção para seus clientes.
+
+79
+00:3:39,000 --> 00:3:43,000
+Uma última parte disso que vai ser importante somente para
+
+80
+00:3:43,000 --> 00:3:45,000
+entendimento é que uma vez iniciado a escrita
+
+81
+00:3:45,000 --> 00:3:48,000
+das aplicações, aplicações Node.js, que é o que
+
+82
+00:3:48,000 --> 00:3:51,000
+nós vamos estar focados neste curso, é que o caminho que
+
+83
+00:3:51,000 --> 00:3:54,000
+o Node.js realmente se comunica com o MongoDB
+
+84
+00:3:54,000 --> 00:3:56,000
+é através do 'driver'.
+
+85
+00:3:56,000 --> 00:4:00,000
+Há uma biblioteca que está disponível e você pode
+
+86
+00:4:00,000 --> 00:4:03,000
+instalar e usar em sua aplicação Node.js que
+
+87
+00:4:03,000 --> 00:4:06,000
+manipula todas as conexões com o MongoDB, 
+
+88
+00:4:06,000 --> 00:4:09,000
+'failover', e tudo sobre os 'wire protocol'
+
+89
+00:4:09,000 --> 00:4:12,000
+e basicamente na sua aplicação, tudo que você fazer
+
+90
+00:4:12,000 --> 00:4:16,000
+é usar esta API fornecida pelo driver, e ele irá manusear
+
+91
+00:4:16,000 --> 00:4:18,000
+a comunicação com o MongoDB pra você.
+
+92
+00:4:18,000 --> 00:4:22,000
+Então você pode usar está API para inserir documentos, encontrar
+
+93
+00:4:22,000 --> 00:4:25,000
+documentos, mover documentos e e tudo manipulado pelo
+
+94
+00:4:25,000 --> 00:4:26,000
+driver.
+
